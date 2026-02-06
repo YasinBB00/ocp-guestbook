@@ -1,5 +1,9 @@
 FROM registry.access.redhat.com/ubi10/go-toolset:10.0 AS build
 WORKDIR /app
+
+COPY go.mod go.sum ./
+RUN go mod download
+
 COPY . .
 RUN go build -o guestbook-api
 
@@ -8,3 +12,4 @@ WORKDIR /app
 COPY --from=build /app/guestbook-api .
 EXPOSE 8080
 CMD ["./guestbook-api"]
+
