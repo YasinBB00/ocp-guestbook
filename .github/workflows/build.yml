@@ -16,10 +16,10 @@ jobs:
 
       - name: Build backend
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/guestbook-backend:${{ github.sha }} backend
-          docker push ghcr.io/${{ github.repository_owner }}/guestbook-backend:${{ github.sha }}
+          docker build -t ghcr.io/yasinbb00/guestbook-backend:${{ github.sha }} backend
+          docker push ghcr.io/yasinbb00/guestbook-backend:${{ github.sha }}
 
       - name: Build frontend
         run: |
-          docker build -t ghcr.io/${{ github.repository_owner }}/guestbook-frontend:${{ github.sha }} frontend
-          docker push ghcr.io/${{ github.repository_owner }}/guestbook-frontend:${{ github.sha }}
+          docker build -t ghcr.io/yasinbb00/guestbook-frontend:${{ github.sha }} frontend
+          docker push ghcr.io/yasinbb00/guestbook-frontend:${{ github.sha }}
