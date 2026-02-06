@@ -12,8 +12,8 @@ spec:
       labels:
         app: frontend
     spec:
-      containers:
-        - name: frontend
-          image: ghcr.io/yasinbb00/guestbook-frontend:latest
-          ports:
-            - containerPort: 80
+    containers:
+      - name: frontend
+        image: ghcr.io/yasinbb00/guestbook-frontend:12b6d96e47694b921912fe4607b890cd6d3871ff
+        ports:
+          - containerPort: 80
