@@ -200,7 +200,7 @@ func (app *App) createEntryHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Spara i databas
+	//  Spara i databas
 	err := app.DB.QueryRow(`
 		INSERT INTO entries (name, message) 
 		VALUES ($1, $2) 
