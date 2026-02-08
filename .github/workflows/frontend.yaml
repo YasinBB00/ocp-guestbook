@@ -11,7 +11,7 @@ on:
       - main
     paths:
       - "frontend/**"
-      - ".github/workflows/frontend.yml"
+      - ".github/workflows/frontend.yaml"
   workflow_dispatch: {}
 
 env:
@@ -19,7 +19,7 @@ env:
   IMAGE_PREFIX: ghcr.io/yasinbb00/ocp-guestbook/
   IMAGE_REGISTRY: ghcr.io/yasinbb00/ocp-guestbook
   IMAGE_NAME: frontend
-  INFRA_REPO: yasinbb00/infra_openshift
+  INFRA_REPO: yasinbb00/guest-book-infra
 
 jobs:
   build-frontend:
@@ -74,8 +74,8 @@ jobs:
           platforms: ${{ steps.platform.outputs.platforms }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ghcr.io/narah111/ocp-guestbook/frontend:latest
-            ghcr.io/narah111/ocp-guestbook/frontend:${{ steps.image-tag.outputs.tag }}
+            ghcr.io/yasinbb00/ocp-guestbook/frontend:latest
+            ghcr.io/yasinbb00/ocp-guestbook/frontend:${{ steps.image-tag.outputs.tag }}
 
       - name: Update Kubernetes manifests
         if: github.event_name != 'workflow_dispatch'
@@ -83,12 +83,12 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          git clone https://${{ secrets.INFRA_OPENSHIFT }}@github.com/${{ env.INFRA_REPO }}.git infra_openshift
-          cd infra_openshift
+          git clone https://${{ secrets.guest-book-infra }}@github.com/${{ env.INFRA_REPO }}.git guest-book-infra
+          cd guest-book-infra
 
-          sed -i "s|image: .frontend:.|image: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.tag }}|" k8s/frontend.yml
-          sed -i 's|value: ".*"|value: "${{ steps.image-tag.outputs.tag }}"|' k8s/frontend.yml
+          sed -i "s|image: .frontend:.|image: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.tag }}|" k8s/frontend.yaml
+          sed -i 's|value: ".*"|value: "${{ steps.image-tag.outputs.tag }}"|' k8s/frontend.yaml
 
-          git add k8s/frontend.yml
+          git add k8s/frontend.yaml
           git commit -m "Updated frontend image to ${{ steps.image-tag.outputs.tag }}"
           git push origin main
