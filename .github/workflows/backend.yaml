@@ -70,7 +70,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./backend
-          file: ./backend/Containerfile
+          file: ./backend/Dockerfile
           platforms: ${{ steps.platform.outputs.platforms }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
