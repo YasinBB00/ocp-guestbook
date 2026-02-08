@@ -212,7 +212,7 @@ func (app *App) createEntryHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Invalidera cachee
+	// Invalidera cache
 	if app.Redis != nil {
 		app.Redis.Del(app.Ctx, "entries:all")
 		// Incrementera statistik
