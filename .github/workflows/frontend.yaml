@@ -83,7 +83,7 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
 
-          git clone https://${{ secrets.guest-book-infra }}@github.com/${{ env.INFRA_REPO }}.git guest-book-infra
+          git clone https://${{ secrets.guest_book_infra }}@github.com/${{ env.INFRA_REPO }}.git guest-book-infra
           cd guest-book-infra
 
           sed -i "s|image: .frontend:.|image: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.image-tag.outputs.tag }}|" k8s/frontend.yaml
