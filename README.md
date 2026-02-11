@@ -133,23 +133,24 @@ kommunicera med Redis!
 
 ## Checklist
 
-- [ ] Alla 6 pods körs (2x backend, 2x frontend, 1x postgres, 1x redis)
-- [ ] ConfigMaps och Secrets används korrekt
-- [ ] Backend kan ansluta till både PostgreSQL och Redis
-- [ ] Frontend kan kommunicera med backend via service
-- [ ] Route exponerar applikationen externt
-- [ ] Cache fungerar (verifiera X-Cache header med `curl -i`)
-- [ ] Health checks fungerar
-- [ ] Persistent storage används för PostgreSQL
-- [ ] Kan skapa och läsa inlägg via webbgränssnittet (frontend applikationen)
+- [x] Alla 6 pods körs (2x backend, 2x frontend, 1x postgres, 1x redis)
+- [x] ConfigMaps och Secrets används korrekt
+- [x] Backend kan ansluta till både PostgreSQL och Redis
+- [x] Frontend kan kommunicera med backend via service
+- [x] Route exponerar applikationen externt
+- [x] Cache fungerar (verifiera X-Cache header med `curl -i`)
+- [x] Health checks fungerar
+- [x] Persistent storage används för PostgreSQL
+- [x] Kan skapa och läsa inlägg via webbgränssnittet (frontend applikationen)
 
-## Reflektionsfrågor
+## Rapporten skall innehålla:
 
-1. Varför använder vi multi-stage builds?
-2. Vad händer om Redis går ner? Funkar applikationen fortfarande?
-3. Hur skulle ni implementera high availability för PostgreSQL?
-4. Varför använder vi separate services för backend och frontend?
-5. Vad är skillnaden mellan ClusterIP, NodePort och LoadBalancer?
-6. Varför bör känsliga data ligga i Secrets istället för ConfigMaps?
-7. Hur kan vi implementera horizontal pod autoscaling?
+En beskrivning för varje steg som behöver göras i resan från källkod till produktion i OpenShift. (G)
+
+Vilka verktyg använde du, finns det andra verktyg som skulle kunna användas? Varför valde du just dessa? (G)
+
+Svar:
+
+
+
 
